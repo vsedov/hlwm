@@ -1,0 +1,30 @@
+site_name: herbstluftwm
+repo_url: https://github.com/vsedov/herbstluftwm
+site_url: https://vsedov.github.io/herbstluftwm
+site_description: My dots for herb
+site_author: vsedov
+
+nav:
+  - Home: index.md
+  - Modules: modules.md
+plugins:
+  - search
+  - mkdocstrings:
+      handlers:
+        python:
+            setup_commands:
+                - import sys
+                - sys.path.append('../')
+copyright: Maintained by vsedov.
+theme:
+  name: material
+  feature:
+    tabs: true
+  palette:
+    primary: white
+    accent: blue
+markdown_extensions:
+  - toc:
+      permalink: true
+  - pymdownx.arithmatex:
+      generic: true
