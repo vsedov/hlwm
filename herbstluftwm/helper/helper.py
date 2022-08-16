@@ -2,7 +2,9 @@ from inspect import getmembers, isfunction
 
 from attr import define
 
+from herbstluftwm.helper.test import hc_deco
 from herbstluftwm.log import get_logger
+from herbstluftwm.utils.utils import cls_func_name_to_var
 
 log = get_logger(__name__)
 
@@ -24,21 +26,21 @@ def set_global(class_name, glob):
 
     return None
     """
-
     helper = class_name()
-    them_var = [f[0] for f in getmembers(class_name, isfunction) if not f[0].startswith("_")]
+    them_var = cls_func_name_to_var(class_name)
     for f in them_var:
         # log.info(f)
         glob[f] = getattr(helper, f)
     return glob
 
 
-@define
 class SetKeybinds:
 
+    @hc_deco
     def spawn(self, args):
         return f"spawn {args}"
 
+    @hc_deco
     def mod(self, args: str) -> str:
         return f"mod4-{args}"
 

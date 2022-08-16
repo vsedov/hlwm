@@ -1,6 +1,5 @@
 import os
 
-
 from herbstluftwm.log import get_logger
 
 log = get_logger(__name__)
@@ -46,19 +45,6 @@ def do_config(command: str, dictionary: dict):
         log.info(f"{command} {k} {v}")
 
 
-def chain(*args, char="."):
-    """Chain data"""
-    to_chain = f" {char} ".join(args)
-    return f"chain {char} {to_chain}"
-
-
-def rotate(n):
-    """Temp_doc"""
-
-    assert n > 0
-    return chain("lock", *["rotate" for _ in range(n)], "unlock")
-
-
 def startup_run(command_dict: dict[str]):
     """Commands to run on startup"""
     command = 'silent new_attr bool my_not_first_autostart'
@@ -75,7 +61,8 @@ def bind_cycle_layout():
     # I.e. if there are two windows within a frame,
     # the grid layout is skipped.
 
-    hc("keybind Mod4-space "
-       "or , and . compare tags.focus.curframe_wcount = 2 "
-       ". cycle_layout +1 vertical horizontal max vertical grid "
-       ", cycle_layout +1 ")
+    hc(
+        "keybind Mod4-space "
+        "or , and . compare tags.focus.curframe_wcount = 2 "
+        ". cycle_layout +1 vertical horizontal max vertical grid "
+        ", cycle_layout +1 ")
