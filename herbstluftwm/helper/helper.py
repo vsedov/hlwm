@@ -1,9 +1,36 @@
+from inspect import getmembers, isfunction
 
 from attr import define
 
 from herbstluftwm.log import get_logger
 
 log = get_logger(__name__)
+
+
+def set_global(class_name, glob):
+    """
+    Create global variables:
+    This little function will index, global to create variables based on the function names
+    For example :
+        ```
+            def mod(self, args: str) -> str:
+                return f"Mod4-{args}"
+
+            def shift(self, args: str) -> str:
+                return f"shift-{args}"
+        ```
+    Will create a list of ["mod", "shift"]
+    Then the loop will index into global vars
+
+    return None
+    """
+
+    helper = class_name()
+    them_var = [f[0] for f in getmembers(class_name, isfunction) if not f[0].startswith("_")]
+    for f in them_var:
+        # log.info(f)
+        glob[f] = getattr(helper, f)
+    return glob
 
 
 @define

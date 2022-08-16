@@ -1,29 +1,13 @@
 # flake8: noqa
 from dataclasses import dataclass
-from inspect import getmembers, isfunction
 from typing import Tuple
 
-from herbstluftwm.helper.helper import SetTheme
+from herbstluftwm.helper.helper import SetTheme, set_global
 from herbstluftwm.log import get_logger
 
 log = get_logger(__name__)
 
-
-#  TODO(vsedov) (01:31:05 - 16/08/22): This cannt be refactore , as the global scope would change.
-def create_global_var() -> SetTheme:
-
-    helper = SetTheme()
-    them_var = [
-        f[0] for f in getmembers(SetTheme, isfunction)
-        if not f[0].startswith("_")
-    ]
-    for f in them_var:
-        # log.info(f)
-        globals()[f] = getattr(helper, f)
-    return helper
-
-
-helper = create_global_var()
+set_global(SetTheme, globals())
 
 
 @dataclass

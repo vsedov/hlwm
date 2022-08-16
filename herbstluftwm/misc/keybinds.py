@@ -3,43 +3,13 @@
 from dataclasses import dataclass
 from typing import Tuple
 
-from herbstluftwm.helper.helper import SetKeybinds
+from herbstluftwm.helper.helper import SetKeybinds, set_global
 from herbstluftwm.log import get_logger
 
 log = get_logger(__name__)
 resize_step = "0.05"
 
-
-def create_global_var() -> SetKeybinds:
-    """
-    Create global variables:
-    This little function will index, global to create variables based on the function names
-    For example :
-        ```
-            def mod(self, args: str) -> str:
-                return f"Mod4-{args}"
-
-            def shift(self, args: str) -> str:
-                return f"shift-{args}"
-        ```
-    Will create a list of ["mod", "shift"]
-    Then the loop will index into global vars
-
-    return None
-    """
-
-    helper = SetKeybinds()
-    keybind_variable_names = [
-        f[0] for f in getmembers(SetKeybinds, isfunction)
-        if not f[0].startswith("_")
-    ]
-    for f in keybind_variable_names:
-        log.info(f)
-        globals()[f] = getattr(helper, f)
-    return helper
-
-
-helper = create_global_var()
+set_global(SetKeybinds, globals())
 
 
 @dataclass
@@ -138,7 +108,6 @@ keybind_layout = {
     mod("p"): "pseudotile toggle",
 }
 
-BINDS = CreateBinds(keybind_sesion, keybind_misc_spawn, keybind_focus_client,
-                    keybind_focus_monitor, keybind_move_client,
-                    keybind_split_frames, keybind_resize_frames, keybind_tag,
-                    keybind_layout).create()
+BINDS = CreateBinds(
+    keybind_sesion, keybind_misc_spawn, keybind_focus_client, keybind_focus_monitor, keybind_move_client,
+    keybind_split_frames, keybind_resize_frames, keybind_tag, keybind_layout).create()
