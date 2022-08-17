@@ -6,12 +6,12 @@ log = get_logger(__name__)
 def setup_dict():
 
     return {
-        "spawn": ["spawn", " "],
         "mod": ["Mod4", "-"],
         "shift": ["Shift", "-"],
         "ctrl": ["control", "-"],
         "alt": ["alt", "-"],
         "space": ["space", "-"],
+        "spawn": ["spawn", " "],
     }
 
 
@@ -22,3 +22,4 @@ def setup_extra():
         "mod_alt": [hc.mod(hc.alt()), "-"],
         "mod_shift_ctrl": [hc.mod(hc.shift(hc.ctrl())), "-"],
     }
+

@@ -66,3 +66,4 @@ def bind_cycle_layout():
         "or , and . compare tags.focus.curframe_wcount = 2 "
         ". cycle_layout +1 vertical horizontal max vertical grid "
         ", cycle_layout +1 ")
+

@@ -13,8 +13,7 @@ def get_function_info(f, function_name, exclude_list=[]) -> bool:
     in_exclude = function_name in exclude_list
     in_main_dict = function_name in hc.__dict__.keys()
     if in_main_dict:
-        log.warn(f"Woops function {function_name} already exists, change the name\naddress => {f[1]}")
-        log.warn("Skipping")
+        log.warn(f"Skipping : => {function_name} already exists, change the name\naddress => {f[1]}")
         return False
     elif in_exclude:
         log.warn("Skipping")
