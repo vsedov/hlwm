@@ -1,5 +1,8 @@
+#type:ignore
+# flake8: noqa
 import os
 
+from herbstluftwm.helper.magic import hc_deco
 from herbstluftwm.log import get_logger
 
 log = get_logger(__name__)
@@ -17,7 +20,7 @@ def system_run(run: str):
     os.system(run)
 
 
-def hc(args: str):
+def hc_run(args: str):
     """HC runs herbstclient commands
 
     Parameters
@@ -25,7 +28,7 @@ def hc(args: str):
     args : str
         Executes herbclient commands
     """
-    system_run(f"herbstclient {args}")
+    system_run(hc.hc(args))
 
 
 def do_config(command: str, dictionary: dict):
@@ -41,40 +44,31 @@ def do_config(command: str, dictionary: dict):
         data being parsed down
     """
     for k, v in dictionary.items():
-        hc(f"{command} {k} {v}")
+        hc_run(f"{command} {k} {v}")
         log.info(f"{command} {k} {v}")
-
-
-def chain(*args, char="."):
-    """Chain data"""
-    to_chain = f" {char} ".join(args)
-    return f"chain {char} {to_chain}"
-
-
-def rotate(n):
-    """Temp_doc"""
-
-    assert n > 0
-    return chain("lock", *["rotate" for _ in range(n)], "unlock")
 
 
 def startup_run(command_dict: dict[str]):
     """Commands to run on startup"""
     command = 'silent new_attr bool my_not_first_autostart'
-    exit_code = hc(command)
+    exit_code = hc_run(command)
     if exit_code == 0:
         for command in command_dict:
             system_run(command)
 
 
 def bind_cycle_layout():
-    # The following cycles through the available layouts
-    # within a frame, but skips layouts, if the layout change
-    # wouldn't affect the actual window positions.
-    # I.e. if there are two windows within a frame,
-    # the grid layout is skipped.
-
-    hc("keybind Mod4-space "
-       "or , and . compare tags.focus.curframe_wcount = 2 "
-       ". cycle_layout +1 vertical horizontal max vertical grid "
-       ", cycle_layout +1 ")
+    """
+    The following cycles through the available layouts
+    within a frame, but skips layouts, if the layout change
+    wouldn't affect the actual window positions.
+    I.e. if there are two windows within a frame,
+    the grid layout is skipped.
+    """
+    hc_run(
+        h.keybind(
+            h.mod(
+                h.space(
+                    "or , and . compare tags.focus.curframe_wcount = 2 "
+                    ". cycle_layout +1 vertical horizontal max vertical grid "
+                    ", cycle_layout +1 "))))
