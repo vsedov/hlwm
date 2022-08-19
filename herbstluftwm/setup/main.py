@@ -8,4 +8,17 @@ from herbstluftwm.setup.module_load import inital_setup
 
 log = get_logger(__name__)
 
-inital_setup()
+def create_commands():
+    # Load the required commands hc.mod ... hc.keybind ....
+    inital_setup()
+
+    # hc.keybind(hc. ....)
+    binds = setup_binds()
+    attributes = setup_attributes()
+
+    # these needs to be executed
+
+
+def setup():
+    create_commands()
+    ...

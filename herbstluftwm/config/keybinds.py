@@ -29,7 +29,7 @@ class CreateBinds:
                     **main_keybind_dict,
                     **self.__dict__[keybind],
                 }
-        return main_keybind_dict
+        return set(map(lambda key: hc.hc(hc.keybind(key, main_keybind_dict[key])), main_keybind_dict))
 
 
 def setup_binds():
@@ -90,13 +90,13 @@ def setup_binds():
     keybind_resize_frames = {
         # resize frames
         hc.mod_ctrl("h"): 'resize left  +' + resize_step,
-        hc.mod_ctrl("j"): 'resize down' + resize_step,
-        hc.mod_ctrl("k"): 'resize up' + resize_step,
-        hc.mod_ctrl("l"): 'resize right' + resize_step,
-        hc.mod_ctrl("Left"): 'resize left' + resize_step,
-        hc.mod_ctrl("Down"): 'resize down' + resize_step,
-        hc.mod_ctrl("Up"): 'resize up' + resize_step,
-        hc.mod_ctrl("Right"): 'resize right' + resize_step,
+        hc.mod_ctrl("j"): 'resize down ' + resize_step,
+        hc.mod_ctrl("k"): 'resize up ' + resize_step,
+        hc.mod_ctrl("l"): 'resize right ' + resize_step,
+        hc.mod_ctrl("Left"): 'resize left ' + resize_step,
+        hc.mod_ctrl("Down"): 'resize down ' + resize_step,
+        hc.mod_ctrl("Up"): 'resize up ' + resize_step,
+        hc.mod_ctrl("Right"): 'resize right ' + resize_step,
     }
 
     keybind_tag = {

@@ -10,9 +10,11 @@ from herbstluftwm.log import get_logger
 log = get_logger(__name__)
 
 
+#  TODO(vsedov) (23:13:20 - 19/08/22): refactor this : thisis being used in each layer
+#  it is not wise to have that there.
 @dataclass
 class CreateAttributes:
-    attributes: dict
+    attr_main: dict
 
     def create(self) -> Tuple[str, dict]:
         """ Create the  attributes that get parsed through """
@@ -23,11 +25,11 @@ class CreateAttributes:
                     **main_attr,
                     **self.__dict__[attr],
                 }
-        return main_attr
+        return set(map(lambda key: hc.hc(key, main_attr[key]), main_attr))
 
 
 def setup_attributes():
-    attr = {
+    attr_main = {
         hc.set_theme("tiling.reset"): "1",
         hc.set_floating_theme("reset"): "1",
         hc.set_active_theme("active.color"): ...,
@@ -43,4 +45,4 @@ def setup_attributes():
         hc.set_active_theme("outer_color"): "'#3E4A00'",
         hc.set_active_theme("background_color"): "'#141414'",
     }
-    return CreateAttributes(attr).create()
+    return CreateAttributes(attr_main).create()

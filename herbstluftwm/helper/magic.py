@@ -8,7 +8,7 @@ log = get_logger(__name__)
 class HC:
 
     def __init__(self):
-        pass
+        ...
 
 
 hc = HC()
@@ -36,3 +36,16 @@ def delimit_str(name, start, delim=" "):
     out.__name__ = name
     return out
 
+
+class HelperFunctions:
+
+    def __init__(self):
+        ...
+
+
+hp = HelperFunctions()
+
+
+def hp_register(f):
+    hp.__dict__[f.__name__] = f
+    return f

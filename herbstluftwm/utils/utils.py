@@ -50,6 +50,7 @@ def set_delimit_function(module_name):
     for f in getmembers(imported, isfunction):
         function_name = f[1].__name__
         if get_function_info(f, function_name, ["get_logger"]):
+            #  REVISIT viv (23:32:17 - 19/08/22): Change this, if this is causing issues
             match function_name:
                 case "setup_dict":
                     dictionary_item_looper(f)

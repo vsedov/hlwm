@@ -6,3 +6,4 @@ log = get_logger(__name__)
 
 def setup_dict():
     return create_dict(*{("set_class", "class", "="), ("set_instance", "windowtype", "=")})
+
