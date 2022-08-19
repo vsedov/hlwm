@@ -14,7 +14,7 @@ class HC:
 hc = HC()
 
 
-def hc_set(f):
+def hc_register(f):
     hc.__dict__[f.__name__] = f
     return f
 
