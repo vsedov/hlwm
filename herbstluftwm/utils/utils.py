@@ -10,8 +10,6 @@ from herbstluftwm.log import get_logger
 log = get_logger(__name__)
 
 
-
-
 def get_function_info(f, function_name, exclude_list=[]) -> bool:
     in_exclude = function_name in exclude_list
     in_main_dict = function_name in hc.__dict__.keys()

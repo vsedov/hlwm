@@ -5,9 +5,8 @@
 import logging
 from typing import Optional, cast
 
-from rich.logging import RichHandler
-
 from herbstluftwm import constants
+from rich.logging import RichHandler
 
 TRACE_LEVEL = 5
 
