@@ -19,7 +19,7 @@ bind_cycle_layout()
 
 layout = "(split horizontal:0.5:0 " \
          "(clients vertical:0) (clients vertical:0))"
-hc_run("load " + str(tag_names[0]) + " '" + layout + "'")
+hc_run(f"load {str(tag_names[0])} '{layout}'")
 
 # tag number 5
 hc_run("floating 5 on")

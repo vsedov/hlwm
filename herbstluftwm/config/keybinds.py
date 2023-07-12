@@ -88,15 +88,14 @@ def setup_binds():
     }
 
     keybind_resize_frames = {
-        # resize frames
-        hc.mod_ctrl("h"): 'resize left  +' + resize_step,
-        hc.mod_ctrl("j"): 'resize down ' + resize_step,
-        hc.mod_ctrl("k"): 'resize up ' + resize_step,
-        hc.mod_ctrl("l"): 'resize right ' + resize_step,
-        hc.mod_ctrl("Left"): 'resize left ' + resize_step,
-        hc.mod_ctrl("Down"): 'resize down ' + resize_step,
-        hc.mod_ctrl("Up"): 'resize up ' + resize_step,
-        hc.mod_ctrl("Right"): 'resize right ' + resize_step,
+        hc.mod_ctrl("h"): f'resize left  +{resize_step}',
+        hc.mod_ctrl("j"): f'resize down {resize_step}',
+        hc.mod_ctrl("k"): f'resize up {resize_step}',
+        hc.mod_ctrl("l"): f'resize right {resize_step}',
+        hc.mod_ctrl("Left"): f'resize left {resize_step}',
+        hc.mod_ctrl("Down"): f'resize down {resize_step}',
+        hc.mod_ctrl("Up"): f'resize up {resize_step}',
+        hc.mod_ctrl("Right"): f'resize right {resize_step}',
     }
 
     keybind_tag = {
